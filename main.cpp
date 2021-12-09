@@ -10,13 +10,12 @@ Maksym Shchotkin IV-91
 
 int main(int argc, char* argv[]) {
 
-	const char* short_options = "hvs::f:";
+        const char* short_options = "hvs";
 
 	const struct option long_options[] = {
 		{"help",no_argument,NULL,'h'},
 		{"version",no_argument,NULL,'v'},
 		{"size",optional_argument,NULL,'s'},
-		{"file",required_argument,NULL,'f'},
 		{NULL,0,NULL,0}
 	};
 
@@ -24,7 +23,6 @@ int main(int argc, char* argv[]) {
 	int check_h = 1;
 	int check_v = 1;
 	int check_s = 1;
-	int check_f = 1;
 	int option_index;
 
 	opterr=0;
@@ -34,7 +32,7 @@ int main(int argc, char* argv[]) {
 		switch (rez) {
 		case 'h': {
 			if (check_h > 0){
-				printf("You`ve used help option.\nUnfortunatelly program is help-less :(\nTry -h or --help.\n\n");
+                                printf("You`ve used help option.\nБудь ласка, спробуйте іншу опцію, наприклад:(\nTry -h or --help.\n\n");
 			}
 			check_h--;
 			break;
@@ -54,14 +52,6 @@ int main(int argc, char* argv[]) {
 					printf("You`ve used size option without value\nTry -s or --size.\n\n");
 			}
 			check_s--;
-			break;
-		};
-
-		case 'f': {
-			if (check_f > 0){
-				printf("You`ve used file option (value is needed).\nFile = %s\nTry -f or --file.\n\n", optarg);
-			}
-			check_f--;
 			break;
 		};
 		case '?': default: {
